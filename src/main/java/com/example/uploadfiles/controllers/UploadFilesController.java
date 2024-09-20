@@ -3,6 +3,7 @@ package com.example.uploadfiles.controllers;
 
 import com.example.uploadfiles.services.IUploadFilesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,9 @@ public class UploadFilesController {
     IUploadFilesService uploadFilesService;
 
     @PostMapping("/picture")
-    private ResponseEntity<String> uploadPic(MultipartFile file){
+    private ResponseEntity<String> uploadPic(MultipartFile file) throws Exception {
 
-        return new ResponseEntity<>(uploadFilesService.handleFileUpload(file));
+        return new ResponseEntity<>(uploadFilesService.handleFileUpload(file),HttpStatus.OK);
 
     }
 
